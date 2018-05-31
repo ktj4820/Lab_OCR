@@ -49,10 +49,6 @@ def img_read(image_name):
     return img_raw
 
 
-def find_backgraund_color(img, cluster):
-    clt = KMeans(n_clusters=cluster)
-    clt.fit(img)
-
 def ImageFilter_DETAIL(img_address):
     img = Image.open(img_address)
     img.filter(ImageFilter.DETAIL)
@@ -164,7 +160,6 @@ def img2avg_gray(img_raw):
     cv2.destroyAllWindows()
 
 
-
 def img2weight_gray(img_raw):
     '''average gray method'''
     # img_raw = cv2.imread('C:\\Users\\dby_freedom\\Desktop\\661\\Image\\' + image_name)
@@ -174,7 +169,7 @@ def img2weight_gray(img_raw):
     # # # grayimg= cv2.CreateImage(cv.GetSize(image), image.depth, 1)
     #
     img = img_raw
-    weight_gray = np.zeros((img.shape[0],img.shape[1]), dtype=img.dtype)
+    weight_gray = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
     b = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
     g = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
     r = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
@@ -194,6 +189,7 @@ def img2weight_gray(img_raw):
     cv2.destroyAllWindows()
 
     return weight_gray
+
 
 def img2thresh(img_gray, threshold = None):
     '''Simple Thresholding'''
@@ -295,6 +291,7 @@ def img2otsuthresh(img_gray):
         plt.title(titles[i * 3 + 2]), plt.xticks([]), plt.yticks([])
     plt.show()
 
+
 def rowsplit(img_thre):
 
     row_white_num = []  # 记录每一行的白色像素总和
@@ -351,6 +348,7 @@ def rowsplit(img_thre):
                 cv2.imshow('image_split_row', image_split_row)
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
+
 
 def columnplit(img_thre):
     column_white_num = []  # 记录每一列的白色像素总和
@@ -473,8 +471,8 @@ def charsplit(img_thre):
                 cv2.destroyAllWindows()
                 rowsplit(image_split_row)
 
-def img_processing():
 
+def img_processing():
     input_image = "1.jpg"
     img_raw = img_read(input_image)
     weight_gray = img2weight_gray(img_raw)
@@ -484,14 +482,11 @@ def img_processing():
     ImageFilter_EDGE_ENHANCE_MORE('C:\\Users\\dby_freedom\\Desktop\\661\\OpenCV\\img2thresh.png')
     ImageFilter_FIND_EDGES('C:\\Users\\dby_freedom\\Desktop\\661\\OpenCV\\img2thresh.png')
 
+
 if __name__ == '__main__':
 
     input_image = "11.jpg"
     img_raw = img_read(input_image)
-
-    # find_backgraund_color()
-    find_backgraund_color(img_raw)
-
 
     # rowsplit(thresh_image)
     # columnplit(thresh_image)

@@ -70,6 +70,6 @@ def cut_pic(filename):  # 图片处理（灰度化，二值化，切割图片）
     # 返回切割的图片
     return final_img_list
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     m = cut_pic('C:\\Users\\dby_freedom\\Desktop\\661\\Image\\1.jpg')
