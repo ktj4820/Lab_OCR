@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-bright = cv2.imread("../Image/18.JPG")
-dark = cv2.imread("../Image/18.JPG")
+bright = cv2.imread("../Image/1.JPG")
+dark = cv2.imread("../Image/1.JPG")
 
 bright_lab = cv2.cvtColor(bright, cv2.COLOR_BGR2LAB)
 dark_lab = cv2.cvtColor(dark, cv2.COLOR_BGR2LAB)
