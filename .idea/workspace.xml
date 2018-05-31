@@ -1,16 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1e987072-f9c5-4849-9672-db4b6880dff6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Image_preprocessing/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Image_preprocessing/detect_color.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Image_preprocessing/image_gray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV/image_cutting_two.py" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV/image_cutting_two.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV/imread.py" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV/imread.py" afterDir="false" />
+    <list default="true" id="1e987072-f9c5-4849-9672-db4b6880dff6" name="Default" comment="add the test module for test function module">
+      <change afterPath="$PROJECT_DIR$/Test_module/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Image/2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Image/7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/j.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image_preprocessing/image_gray.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_preprocessing/image_gray.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image_preprocessing/processing.md" beforeDir="false" afterPath="$PROJECT_DIR$/Image_preprocessing/processing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_100.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_124.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_145.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_148.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_171.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_179.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_195.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_213.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_219.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_248.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_283.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_30.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_318.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_343.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_41.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_53.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/binary_row_53.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/binary_row_6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/binary_row_7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/binary_row_76.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_100.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_101.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_101.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_104.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_104.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_105.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_105.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_106.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_106.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_108.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_109.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_109.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_111.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_111.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_112.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_112.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_113.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_113.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_114.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_116.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_116.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_120.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_120.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_121.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_121.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_122.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_123.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_124.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_128.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_128.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_129.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_132.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_133.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_133.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_134.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_134.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_135.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_135.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_137.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_143.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_143.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_144.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_145.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_146.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_147.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_150.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_150.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_151.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_151.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_152.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_152.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_153.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_155.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_156.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_156.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_157.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_157.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_158.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_159.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_159.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_165.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_165.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_167.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_168.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_169.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_177.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_178.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_178.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_179.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_179.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_18.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_18.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_180.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_181.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_182.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_185.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_19.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_19.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_190.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_192.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_193.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_20.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_20.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_202.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_203.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_21.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_21.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_210.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_210.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_213.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_214.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_214.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_215.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_22.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_225.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_225.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_226.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_237.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_238.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_249.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_254.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_265.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_27.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_27.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_277.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_28.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_28.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_29.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_29.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_30.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_34.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_34.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_35.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_35.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_36.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_37.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_38.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_40.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_40.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_41.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_42.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_42.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_43.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_44.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_44.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_45.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_45.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_46.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_46.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_49.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_49.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_50.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_50.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_51.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_52.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_53.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_54.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_54.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_58.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_58.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_59.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_59.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_60.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_62.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_62.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_63.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_63.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_65.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_65.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_66.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_66.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_67.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_68.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_68.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_69.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_69.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_73.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_73.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_74.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_74.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_75.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_75.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_76.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_77.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_77.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_78.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_78.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_80.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_80.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_81.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_81.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_82.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_83.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_84.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_84.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_86.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_86.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_87.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_87.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_88.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_88.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_89.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_89.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_90.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_90.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_91.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_91.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_92.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_92.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_96.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_96.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_97.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_97.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_98.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_98.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/char_split_99.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/char_split_99.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_100.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_124.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_145.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_148.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_171.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_179.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_195.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_213.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_219.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_248.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_283.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_30.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_318.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_343.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_41.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_53.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/row_split_53.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/row_split_6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Img_processed/row_split_7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_processed/row_split_76.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test_module/test_detect_color_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_module/test_detect_color_function.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,15 +199,17 @@
     <SUITE FILE_PATH="coverage/Lab_OCR$detect_color.coverage" NAME="detect_color Coverage Results" MODIFIED="1527577228920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
     <SUITE FILE_PATH="coverage/Lab_OCR$detect_color_v2.coverage" NAME="detect_color_v2 Coverage Results" MODIFIED="1527689825192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
     <SUITE FILE_PATH="coverage/Lab_OCR$detect_color_v3.coverage" NAME="detect_color_v3 Coverage Results" MODIFIED="1527689113601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
-    <SUITE FILE_PATH="coverage/Lab_OCR$image_gray.coverage" NAME="image_gray Coverage Results" MODIFIED="1527742638452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
+    <SUITE FILE_PATH="coverage/Lab_OCR$image_gray.coverage" NAME="image_gray Coverage Results" MODIFIED="1527776205209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
+    <SUITE FILE_PATH="coverage/Lab_OCR$test_detect_color_function.coverage" NAME="test_detect_color_function Coverage Results" MODIFIED="1527768034208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test_module" />
+    <SUITE FILE_PATH="coverage/Lab_OCR$test_gen_thresh_img_function.coverage" NAME="test_gen_thresh_img_function Coverage Results" MODIFIED="1527770488209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test_module" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="image_gray.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image_preprocessing/image_gray.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="536" column="24" lean-forward="true" selection-start-line="536" selection-start-column="24" selection-end-line="536" selection-end-column="24" />
+            <state relative-caret-position="435">
+              <caret line="584" column="25" lean-forward="true" selection-start-line="584" selection-start-column="25" selection-end-line="584" selection-end-column="25" />
               <folding>
                 <element signature="e#15#36#0" expanded="true" />
               </folding>
@@ -42,8 +220,8 @@
       <file leaf-file-name="detect_color.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1127">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="66">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#32#66#0" expanded="true" />
               </folding>
@@ -54,8 +232,8 @@
       <file leaf-file-name="detect_color_v2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3933">
-              <caret line="174" selection-start-line="174" selection-end-line="174" />
+            <state relative-caret-position="621">
+              <caret line="114" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="e#15#36#0" expanded="true" />
               </folding>
@@ -63,11 +241,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detect_color_v3.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py">
+      <file leaf-file-name="test_gen_thresh_img_function.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="15" />
+            <state relative-caret-position="359">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+              <folding>
+                <element signature="e#15#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_detect_color_function.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -112,6 +302,8 @@
       <find>the format of image has changed from OpenCv to Image</find>
       <find>This row image is red</find>
       <find>gen_thresh_img</find>
+      <find>imwrite</find>
+      <find>threshold</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,6 +317,8 @@
         <option value="$PROJECT_DIR$/OpenCV/imread.py" />
         <option value="$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py" />
         <option value="$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py" />
+        <option value="$PROJECT_DIR$/Test_module/test_detect_color_function.py" />
+        <option value="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" />
         <option value="$PROJECT_DIR$/Image_preprocessing/image_gray.py" />
       </list>
     </option>
@@ -162,7 +356,12 @@
             <path>
               <item name="Lab_OCR" type="b2602c69:ProjectViewProjectNode" />
               <item name="Lab_OCR" type="462c0819:PsiDirectoryNode" />
-              <item name="OpenCV" type="462c0819:PsiDirectoryNode" />
+              <item name="Image_preprocessing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab_OCR" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab_OCR" type="462c0819:PsiDirectoryNode" />
+              <item name="Test_module" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,7 +375,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dby_freedom\Desktop\Lab_OCR\Test_module" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -191,25 +395,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.image_gray">
-    <configuration name="detect_color" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Lab_OCR" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Image_preprocessing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image_preprocessing/detect_color.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="detect_color_v2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Lab_OCR" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -242,7 +427,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\dby_freedom\Desktop\Lab_OCR\Test_module\test_detect_color_function.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,18 +452,58 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="test_detect_color_function" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Lab_OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test_module" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test_module/test_detect_color_function.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test_gen_thresh_img_function" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Lab_OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test_module" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.image_gray" />
-      <item itemvalue="Python.detect_color" />
       <item itemvalue="Python.detect_color_v2" />
       <item itemvalue="Python.detect_color_v3" />
+      <item itemvalue="Python.test_detect_color_function" />
+      <item itemvalue="Python.test_gen_thresh_img_function" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.image_gray" />
+        <item itemvalue="Python.test_gen_thresh_img_function" />
+        <item itemvalue="Python.test_detect_color_function" />
         <item itemvalue="Python.detect_color_v2" />
         <item itemvalue="Python.detect_color_v3" />
-        <item itemvalue="Python.detect_color" />
       </list>
     </recent_temporary>
   </component>
@@ -293,6 +518,14 @@
       <option name="presentableId" value="Default" />
       <updated>1527504690802</updated>
     </task>
+    <task id="LOCAL-00001" summary="add the test module for test function module!">
+      <created>1527752981397</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1527752981397</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -313,16 +546,16 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3278867" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24945533" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29847494" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.2254902" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.44412193" visible="true" weight="0.14872068" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61024845" visible="true" weight="0.14872068" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32995737" />
-      <window_info id="Structure" order="1" sideWeight="0.5558781" side_tool="true" visible="true" weight="0.14872068" />
+      <window_info id="Structure" order="1" sideWeight="0.38975155" side_tool="true" visible="true" weight="0.14872068" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.35729846" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29738563" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -357,19 +590,49 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add the test module for test function module!" />
+    <option name="LAST_COMMIT_MESSAGE" value="add the test module for test function module!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Image_preprocessing/image_gray.py</url>
-          <line>338</line>
-          <option name="timeStamp" value="10" />
+          <line>351</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -403,7 +666,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py">
+    <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="20" column="15" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="15" />
@@ -440,7 +703,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image/1.JPG">
+    <entry file="file://$PROJECT_DIR$/Image/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/OpenCV/imread.py">
@@ -501,7 +764,7 @@
     <entry file="file://$PROJECT_DIR$/Image/11.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image/1.JPG">
+    <entry file="file://$PROJECT_DIR$/Image/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$USER_HOME$/Anaconda3/envs/cv/Lib/site-packages/sklearn/cluster/k_means_.py">
@@ -565,36 +828,6 @@
     <entry file="file://$PROJECT_DIR$/Img_processed/test_for_split.png" />
     <entry file="file://$PROJECT_DIR$/Img_processed/gen_gray.png" />
     <entry file="file://$PROJECT_DIR$/Img_processed/gen_binary.png" />
-    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#32#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3933">
-          <caret line="174" selection-start-line="174" selection-end-line="174" />
-          <folding>
-            <element signature="e#15#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OpenCV/imread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10603">
@@ -605,10 +838,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#15#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image_preprocessing/detect_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#32#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+          <folding>
+            <element signature="e#15#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Image_preprocessing/image_gray.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="536" column="24" lean-forward="true" selection-start-line="536" selection-start-column="24" selection-end-line="536" selection-end-column="24" />
+        <state relative-caret-position="435">
+          <caret line="584" column="25" lean-forward="true" selection-start-line="584" selection-start-column="25" selection-end-line="584" selection-end-column="25" />
           <folding>
             <element signature="e#15#36#0" expanded="true" />
           </folding>

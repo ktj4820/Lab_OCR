@@ -140,14 +140,16 @@ def row_split(raw_img_input):
                 # cv2.imshow('image_split_row', image_split_row)
                 # cv2.waitKey(0)
                 # cv2.destroyAllWindows()
-                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark-1), image_split_row)
+                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark-1),
+                # image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                 # 对应上述标准完成原图切割、显示、保存（注意是对原图的切割，而非二值图）
                 raw_image_split_row = raw_img_input[row_split_start:row_split_end, 0:width]
                 # cv2.imshow('raw_image_split_row', raw_image_split_row)
                 # cv2.waitKey(0)
                 # cv2.destroyAllWindows()
-                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1), raw_image_split_row)
+                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
+                            raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                 '''
                 得到行切割图像，直接对原图像进行颜色判定，进而完成选定亮度阈值，最后得到二值图，显示并保存
@@ -157,30 +159,30 @@ def row_split(raw_img_input):
                 # final_binary_img_save_name = 'final_row_binary'
                 binary_img.save('../Img_processed/binary_row_{}.jpg'.format(row_mark - 1))
 
-
-def char_split_submodule_find_end(start_row, height_or_width_of_image, black_num, white_num,
-                                  black_num_max, white_num_max, arg):
-    """
-    该函数旨在找到对应切割图片行或列结束的位置
-    :param start_row:
-    :param height_or_width_of_image:
-    :param black_num:
-    :param white_num:
-    :param black_num_max:
-    :param white_num_max:
-    :param arg:
-    :return:
-    """
-    end_ = start_row + 1
-    '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
-    0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
-    对于白底黑字情况，则反之'''
-    for m in range(start_row + 1, height_or_width_of_image + 1):
-        if (black_num[m] if arg else white_num[m]) > \
-                (0.95 * black_num_max if arg else 0.95 * white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
-            end_ = m
-            break
-    return end_
+#
+# def char_split_submodule_find_end(start_row, height_or_width_of_image, black_num, white_num,
+#                                   black_num_max, white_num_max, arg):
+#     """
+#     该函数旨在找到对应切割图片行或列结束的位置
+#     :param start_row:
+#     :param height_or_width_of_image:
+#     :param black_num:
+#     :param white_num:
+#     :param black_num_max:
+#     :param white_num_max:
+#     :param arg:
+#     :return:
+#     """
+#     end_ = start_row + 1
+#     '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
+#     0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
+#     对于白底黑字情况，则反之'''
+#     for m in range(start_row + 1, height_or_width_of_image + 1):
+#         if (black_num[m] if arg else white_num[m]) > \
+#                 (0.95 * black_num_max if arg else 0.95 * white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
+#             end_ = m
+#             break
+#     return end_
 
 
 def char_split(raw_img_input):
@@ -201,6 +203,7 @@ def char_split(raw_img_input):
                 end_row = m
                 break
         return end_row
+
     # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
     gen_raw_img = gen_thresh_img(raw_img_input, threshold=65, mode='fixed')  # 生成gen_raw_img图片格式为PIL格式
     gen_img = cv2.cvtColor(np.asarray(gen_raw_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
@@ -213,6 +216,7 @@ def char_split(raw_img_input):
     width = thresh_img.shape[1]
     row_white_num_max = 0
     row_black_num_max = 0
+
     # 计算每一行的黑白色像素总和
     for i in range(image_height):
         white_num = 0  # 这一行白色总数
@@ -262,7 +266,8 @@ def char_split(raw_img_input):
                 # cv2.imshow('raw_image_split_row', raw_image_split_row)
                 # cv2.waitKey(0)
                 # cv2.destroyAllWindows()
-                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1), raw_image_split_row)
+                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
+                            raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                 '''
                 得到行切割图像，直接对原图像进行颜色判定，进而完成选定亮度阈值，最后得到二值图，显示并保存
@@ -346,8 +351,9 @@ def char_split(raw_img_input):
                             char_split_width = column_find_end - column_mark
                             char_split_height = char_image_height
 
-                            # 通过高宽比进行判定字符是否出现黏连，如果出现黏连则取中间线进行切分(阈值设为1.8)
-                            if char_split_height / char_split_width < 1.8:
+                            # 通过高宽比进行判定字符是否出现黏连，如果出现黏连则取中间线进行切分
+                            # (两字符黏连阈值设为1.8，三字符黏连阈值设到0.9
+                            if 0.85 < char_split_height / char_split_width < 1.8:
                                 first_char_split_start = column_mark
                                 first_char_split_end = second_char_split_start = int((column_find_end + column_mark)/2)
                                 second_char_split_end = column_find_end
@@ -372,14 +378,63 @@ def char_split(raw_img_input):
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
                                 cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
-                                            first_raw_image_split_char)
+                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
                                 cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
-                                            second_raw_image_split_char)
+                                            second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
+                            elif char_split_height / char_split_width <= 0.85:  # 出现三字符情况
+
+                                first_char_split_start = column_mark
+                                first_char_split_end = second_char_split_start = \
+                                    int((column_find_end - column_mark) / 3 + column_mark)
+                                second_char_split_end = third_char_split_start = \
+                                    int((column_find_end - column_mark) * 2 / 3 + column_mark)
+                                third_char_split_end = column_find_end
+
+                                first_char_split_start = first_char_split_start - 1 \
+                                    if first_char_split_start > 1 else first_char_split_start
+                                third_char_split_end = third_char_split_end + 1 \
+                                    if third_char_split_end + 1 < char_width else third_char_split_end
+
+                                # 对应上述标准完成原图切割、显示、保存（注意是对原图的切割，而非二值图）
+                                first_raw_image_split_char = raw_image_split_row[
+                                                             0:char_image_height,
+                                                             first_char_split_start:first_char_split_end
+                                                             ]
+
+                                second_raw_image_split_char = raw_image_split_row[
+                                                              0:char_image_height,
+                                                              second_char_split_start:second_char_split_end
+                                                              ]
+
+                                third_raw_image_split_char = raw_image_split_row[
+                                                              0:char_image_height,
+                                                              third_char_split_start:third_char_split_end
+                                                              ]
+
+                                cv2.imshow('first_raw_image_split_char', first_raw_image_split_char)
+                                cv2.waitKey(0)
+                                cv2.destroyAllWindows()
+                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
+                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+
+                                cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
+                                cv2.waitKey(0)
+                                cv2.destroyAllWindows()
+                                cv2.imwrite(
+                                    '../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
+                                    second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+
+                                cv2.imshow('third_raw_image_split_char', third_raw_image_split_char)
+                                cv2.waitKey(0)
+                                cv2.destroyAllWindows()
+                                cv2.imwrite(
+                                    '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
+                                    second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
                             else:
 
                                 # 由于字符之间间隔只有两个像素距离，因此取1个空白字符
@@ -394,7 +449,8 @@ def char_split(raw_img_input):
                                 # cv2.imshow('image_split_row', image_split_row)
                                 # cv2.waitKey(0)
                                 # cv2.destroyAllWindows()
-                                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(column_mark-1), image_split_row)
+                                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(column_mark-1),
+                                # image_split_row)
 
                                 # 对应上述标准完成原图切割、显示、保存（注意是对原图的切割，而非二值图）
                                 raw_image_split_char = raw_image_split_row[
@@ -406,7 +462,7 @@ def char_split(raw_img_input):
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
                                 cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                            raw_image_split_char)
+                                            raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                         column_mark = column_find_end  # 不管检测到的列是不是字符，都将结束列重新赋值给开始列，进行下一轮循环
 
@@ -426,7 +482,8 @@ def detect_row_img_color(image):
     bgr_red = [40, 40, 200]  # 红色判定基准
     bgr_light_blue = [176, 181, 57]  # 淡蓝判定基准
     bgr_yellow = [98, 158, 195]  # 黄色判定基准
-    bgr_white = [230, 230, 230]  # 白色判定基准
+    bgr_white = [225, 225, 225]  # 白色判定基准
+    bgr_gray = [100, 100, 100]  # 灰色判定基准
 
     def detect_img_submodule(submodule_img, color_to_check):
 
@@ -521,7 +578,7 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
     # input_image = "../Img_processed/row_split_18.jpg"
-    input_image = "../Image/1.jpg"
+    input_image = "../Image/2.jpg"
     # print(get_dominant_color(Image.open("../Image/2.JPG")))
     # get_dominant_color(input_image)
 
@@ -534,7 +591,7 @@ if __name__ == '__main__':
 
     raw_img = cv2.imread(input_image)
     # row_split(raw_img)
-    char_split(raw_img) 
+    char_split(raw_img)
     # get_gery(input_image)
 
     # detect_row_img_color(input_image)
