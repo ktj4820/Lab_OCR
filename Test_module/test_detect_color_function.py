@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-bright = cv2.imread("../Image/21.JPG")
+bright = cv2.imread("../Image/19.JPG")
 # bright = cv2.imread("../Img_processed/row_split_44.jpg")
 
 dark = cv2.imread("../Image/18.JPG")
@@ -20,7 +20,9 @@ bgr_red = [40, 40, 200]
 bgr_light_blue = [176, 181, 57]
 bgr_yellow = [98, 158, 195]
 bgr_white = [230, 230, 230]
+
 bgr_gray = [80, 80, 80]  # 灰色判定基准
+
 bgr = bgr_red
 thresh = 40
 
