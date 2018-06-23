@@ -1,33 +1,37 @@
 import cv2
 import numpy as np
 
-bright = cv2.imread("../Image/19.JPG")
+bright = cv2.imread("../Image/6.png")
 # bright = cv2.imread("../Img_processed/row_split_44.jpg")
 
-dark = cv2.imread("../Image/18.JPG")
+dark = cv2.imread("../Image/1.png")
 
 bright_lab = cv2.cvtColor(bright, cv2.COLOR_BGR2LAB)
-dark_lab = cv2.cvtColor(dark, cv2.COLOR_BGR2LAB)
+# dark_lab = cv2.cvtColor(dark, cv2.COLOR_BGR2LAB)
 
 bright_ycb = cv2.cvtColor(bright, cv2.COLOR_BGR2YCrCb)
-dark_ycb = cv2.cvtColor(dark, cv2.COLOR_BGR2YCrCb)
+# dark_ycb = cv2.cvtColor(dark, cv2.COLOR_BGR2YCrCb)
 
 bright_hsv = cv2.cvtColor(bright, cv2.COLOR_BGR2HSV)
-dark_hsv = cv2.cvtColor(dark, cv2.COLOR_BGR2HSV)
+# dark_hsv = cv2.cvtColor(dark, cv2.COLOR_BGR2HSV)
 
 # python
-bgr_red = [40, 40, 200]
+bgr_red = [40, 40, 180]
+test_bgr_red = [40, 40, 150]
 bgr_light_blue = [176, 181, 57]
 bgr_yellow = [98, 158, 195]
-bgr_white = [230, 230, 230]
+bgr_white = [195, 195, 195]
+test_bgr_yellow = [91, 130, 157]
 
 bgr_gray = [80, 80, 80]  # 灰色判定基准
 
 bgr = bgr_red
 thresh = 40
 
-min_bgr = np.array([bgr[0] - thresh, bgr[1] - thresh, bgr[2] - thresh])
-max_bgr = np.array([bgr[0] + thresh, bgr[1] + thresh, bgr[2] + thresh])
+thresh_r = 60
+
+min_bgr = np.array([bgr[0] - thresh, bgr[1] - thresh, bgr[2] - thresh_r])
+max_bgr = np.array([bgr[0] + thresh, bgr[1] + thresh, bgr[2] + thresh_r])
 
 mask_bgr = cv2.inRange(bright, min_bgr, max_bgr)
 result_bgr = cv2.bitwise_and(bright, bright, mask=mask_bgr)

@@ -31,10 +31,11 @@ def get_dominant_color(image):
         if y > 0.9:
             continue
 
-            # Calculate the score, preferring highly saturated colors.
+        # Calculate the score, preferring highly saturated colors.
         # Add 0.1 to the saturation so we don't completely ignore grayscale
         # colors by multiplying the count by zero, but still give them a low
         # weight.
+
         score = (saturation + 0.1) * count
 
         if score > max_score:
