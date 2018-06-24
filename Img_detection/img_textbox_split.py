@@ -61,10 +61,54 @@ def char_split(raw_img_input):
         对于白底黑字情况，则反之'''
         for m in range(start_row + 1, image_height + 1):
             if (row_black_num[m] if arg else row_white_num[m]) > \
-                    (0.95 * row_black_num_max if arg else 0.95 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
+                    (0.85 * row_black_num_max if arg else 0.85 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
                 end_row = m
                 break
         return end_row
+
+    # 分割图像，提取字符行
+    def find_reverse_end_row(start_row):
+        end_row = start_row - 1
+        '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
+        0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
+        对于白底黑字情况，则反之'''
+        for m in range(start_row - 1, int(image_height/2), -1):
+            if (row_black_num[m] if arg else row_white_num[m]) > \
+                    (0.85 * row_black_num_max if arg else 0.85 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
+                end_row = m
+                break
+        return end_row
+
+    def find_real_start_row(real_image_height):
+        find_real_start_row_mark = 0
+        while find_real_start_row_mark < real_image_height - 2:
+            find_real_start_row_mark += 1
+            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
+            即将该行看做出现字符的起始行。
+            对于白底黑字情况，则反之'''
+            if (row_white_num[find_real_start_row_mark] if arg else row_black_num[find_real_start_row_mark]) > \
+                    (0.1 * row_white_num_max if arg else 0.1 * row_black_num_max):
+
+                real_start_row = find_end_row(find_real_start_row_mark)
+
+                if real_start_row - find_real_start_row_mark <= 5:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
+                    return real_start_row
+
+    def find_real_height(initial_real_image_height):
+        find_real_end_row_mark = 0
+        initial_image_height = initial_real_image_height
+        while find_real_end_row_mark < initial_image_height - 2:
+            find_real_end_row_mark += 1
+            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
+            即将该行看做出现字符的起始行。
+            对于白底黑字情况，则反之'''
+            if (row_white_num[initial_image_height-find_real_end_row_mark] if arg else row_black_num[find_real_end_row_mark]) > \
+                    (0.1 * row_white_num_max if arg else 0.1 * row_black_num_max):
+
+                real_row_end = find_reverse_end_row(initial_image_height-find_real_end_row_mark)
+                if initial_image_height - find_real_end_row_mark - real_row_end <= 5:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
+                    # initial_image_height = real_row_end
+                    return real_row_end
 
     # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
     gen_raw_img = gen_thresh_img(raw_img_input, threshold=50, mode='fixed')  # 生成gen_raw_img图片格式为PIL格式
@@ -102,23 +146,26 @@ def char_split(raw_img_input):
     if row_black_num_max < row_white_num_max:
         arg = False
 
-    row_mark = 1
+    # row_mark = 0
+    image_height = find_real_height(image_height)
+    row_mark = find_real_start_row(image_height)
 
     while row_mark < image_height - 2:
         row_mark += 1
         '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
         即将该行看做出现字符的起始行。
         对于白底黑字情况，则反之'''
-        if (row_white_num[row_mark] if arg else row_black_num[row_mark]) > \
-                (0.05 * row_white_num_max if arg else 0.05 * row_black_num_max):
-
-            row_find_end = find_end_row(row_mark)
-
-            if row_find_end - row_mark > 5:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
+        # if (row_white_num[row_mark] if arg else row_black_num[row_mark]) > \
+        #         (0.1 * row_white_num_max if arg else 0.1 * row_black_num_max):
+        if True:
+            # row_find_end = find_end_row(row_mark)
+            row_find_end = image_height
+            # if row_find_end - row_mark > 5:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
+            if True:
 
                 # 因为行间隔比较大，故而在此取检测出现字符行的前面的第3行作为行切割开始行（行长为12）
-                row_split_start = row_mark - 3 if row_mark > 3 else row_mark
-                row_split_end = row_find_end + 3 if row_find_end + 3 < image_height else row_find_end
+                row_split_start = row_mark - 1 if row_mark > 1 else row_mark
+                row_split_end = row_find_end + 1 if row_find_end + 1 < image_height else row_find_end
 
                 # 对上述二值图完成行切割、显示、保存
                 # image_split_row = thresh_img[row_split_start:row_split_end, 0:width]
@@ -240,7 +287,8 @@ def char_split(raw_img_input):
                         continue
 
                     elif (column_white_num[column_mark] if char_arg else column_black_num[column_mark]) > \
-                            (0.05 * column_white_num_max if char_arg else 0.05 * column_black_num_max):
+                            (0.05 * column_white_num_max if char_arg else 0.05 * column_black_num_max) and \
+                            (char_image_height - column_white_num[column_mark+1]) > 1:
 
                         column_find_end = find_end_column(column_mark)
 
@@ -377,8 +425,8 @@ def char_split(raw_img_input):
                             char_split_height = char_image_height
 
                             # 通过高宽比进行判定字符是否出现黏连，如果出现黏连则取中间线进行切分
-                            # (两字符黏连阈值设为1.68，三字符黏连阈值设到0.9
-                            if 0.85 < char_split_height / char_split_width < 1.68:
+                            # (两字符黏连阈值设为1.62，三字符黏连阈值设到0.9
+                            if 0.85 < char_split_height / char_split_width < 1.62:
                                 first_char_split_start = column_mark
                                 first_char_split_end = second_char_split_start = int((column_find_end + column_mark)/2)
                                 second_char_split_end = column_find_end
@@ -801,6 +849,6 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
 
-    input_image = "../Image/12.png"
+    input_image = "../Image/22.png"
     raw_img = cv2.imread(input_image)
     char_split(raw_img)

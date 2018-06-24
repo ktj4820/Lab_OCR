@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e987072-f9c5-4849-9672-db4b6880dff6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Img_detection/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_detection/detect_textbox.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_detection/img_middle_text_split.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_detection/img_preprocessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_recognition/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img_recognition/img_color_recognition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test_module/test_frame_split.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Lab_OCR.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Lab_OCR.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_preprocessing/detect_color_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image_preprocessing/image_gray.py" beforeDir="false" afterPath="$PROJECT_DIR$/Img_detection/image_gray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image_preprocessing/processing.md" beforeDir="false" afterPath="$PROJECT_DIR$/Image_preprocessing/processing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_module/test_detect_color_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_module/test_detect_color_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_detection/detect_textbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/Img_detection/detect_textbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img_detection/img_middle_text_split.py" beforeDir="false" afterPath="$PROJECT_DIR$/Img_detection/img_middle_text_split.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +16,8 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Lab_OCR$detect_color.coverage" NAME="detect_color Coverage Results" MODIFIED="1527577228920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
     <SUITE FILE_PATH="coverage/Lab_OCR$detect_color_v2.coverage" NAME="detect_color_v2 Coverage Results" MODIFIED="1529375590955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Image_preprocessing" />
-    <SUITE FILE_PATH="coverage/Lab_OCR$detect_textbox.coverage" NAME="detect_textbox Coverage Results" MODIFIED="1529481727173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
-    <SUITE FILE_PATH="coverage/Lab_OCR$img_middle_text_split.coverage" NAME="img_middle_text_split Coverage Results" MODIFIED="1529738243502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
+    <SUITE FILE_PATH="coverage/Lab_OCR$detect_textbox.coverage" NAME="detect_textbox Coverage Results" MODIFIED="1529854993848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
+    <SUITE FILE_PATH="coverage/Lab_OCR$img_middle_text_split.coverage" NAME="img_middle_text_split Coverage Results" MODIFIED="1529739323056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
     <SUITE FILE_PATH="coverage/Lab_OCR$img_color_recognition.coverage" NAME="img_color_recognition Coverage Results" MODIFIED="1529375387836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_recognition" />
     <SUITE FILE_PATH="coverage/Lab_OCR$img_top_right_cornor_text_split.coverage" NAME="img_top_right_cornor_text_split Coverage Results" MODIFIED="1529549917959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
     <SUITE FILE_PATH="coverage/Lab_OCR$image_gray__1_.coverage" NAME="image_gray (1) Coverage Results" MODIFIED="1529632313556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Img_detection" />
@@ -56,11 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="img_middle_text_split.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="img_middle_text_split.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Img_detection/img_middle_text_split.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="838" column="36" selection-start-line="838" selection-start-column="36" selection-end-line="838" selection-end-column="36" />
+            <state relative-caret-position="341">
+              <caret line="789" column="46" selection-end-line="806" />
             </state>
           </provider>
         </entry>
@@ -68,7 +55,7 @@
       <file leaf-file-name="test_detect_color_function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="690">
               <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
@@ -77,7 +64,7 @@
       <file leaf-file-name="image_gray.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Img_detection/image_gray.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
+            <state relative-caret-position="15778">
               <caret line="688" column="4" selection-start-line="688" selection-start-column="4" selection-end-line="688" selection-end-column="4" />
             </state>
           </provider>
@@ -104,13 +91,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detect_textbox.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="detect_textbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Img_detection/detect_textbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="222" column="24" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="24" />
+            <state relative-caret-position="406">
+              <caret line="848" lean-forward="true" selection-start-line="848" selection-end-line="848" />
               <folding>
-                <element signature="e#15#25#0" expanded="true" />
+                <element signature="e#15#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,7 +106,7 @@
       <file leaf-file-name="test_gen_thresh_img_function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
+            <state relative-caret-position="966">
               <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
             </state>
           </provider>
@@ -128,17 +115,8 @@
       <file leaf-file-name="img_top_right_cornor_text_split.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7889">
-              <caret line="345" selection-start-line="345" selection-end-line="345" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="img_preprocessing.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Img_detection/img_preprocessing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="19274">
+              <caret line="840" column="29" selection-start-line="840" selection-start-column="29" selection-end-line="840" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -176,8 +154,8 @@
       <find>columnplit</find>
       <find>rowsplit</find>
       <find>thresh_img</find>
-      <find>the format of image has changed from OpenCv to Image</find>
-      <find>This row image is red</find>
+      <find />
+      <find />
       <find>gen_thresh_img</find>
       <find>imwrite</find>
       <find>img</find>
@@ -193,6 +171,7 @@
       <find>binary_img</find>
       <find>dark_lab</find>
       <find>char_gen_</find>
+      <find>row_find_end</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,13 +192,13 @@
         <option value="$PROJECT_DIR$/Image_preprocessing/img_preprocessing.py" />
         <option value="$USER_HOME$/OneDrive - inc/Lab_Project/OCR system/OCR_v2/ocr/image_recognition/image_detection.py" />
         <option value="$PROJECT_DIR$/Img_detection/img_preprocessing.py" />
-        <option value="$PROJECT_DIR$/Img_detection/detect_textbox.py" />
-        <option value="$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py" />
         <option value="$PROJECT_DIR$/Test_module/test_frame_split.py" />
         <option value="$PROJECT_DIR$/Img_detection/image_gray.py" />
         <option value="$PROJECT_DIR$/Test_module/test_detect_color_function.py" />
         <option value="$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py" />
+        <option value="$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py" />
         <option value="$PROJECT_DIR$/Img_detection/img_middle_text_split.py" />
+        <option value="$PROJECT_DIR$/Img_detection/detect_textbox.py" />
       </list>
     </option>
   </component>
@@ -313,7 +292,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.img_middle_text_split">
+  <component name="RunManager" selected="Python.detect_textbox">
+    <configuration name="detect_textbox" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Lab_OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Img_detection" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\dby_freedom\Desktop\Lab_OCR\Img_detection\img_textbox_split.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="image_gray (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Lab_OCR" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -371,25 +369,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test_frame_split" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Lab_OCR" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test_module" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test_module/test_frame_split.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="test_gen_thresh_img_function" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Lab_OCR" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -410,19 +389,19 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.test_frame_split" />
       <item itemvalue="Python.image_gray (1)" />
       <item itemvalue="Python.test_detect_color_function" />
       <item itemvalue="Python.test_gen_thresh_img_function" />
       <item itemvalue="Python.img_middle_text_split" />
+      <item itemvalue="Python.detect_textbox" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.detect_textbox" />
         <item itemvalue="Python.img_middle_text_split" />
         <item itemvalue="Python.test_gen_thresh_img_function" />
         <item itemvalue="Python.test_detect_color_function" />
         <item itemvalue="Python.image_gray (1)" />
-        <item itemvalue="Python.test_frame_split" />
       </list>
     </recent_temporary>
   </component>
@@ -465,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527918248305</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Completing the middle_text_split and top_right_cornor_text_split in the img_middle_text_split and img_top_right_cornor_text_split.">
+      <created>1529738810507</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1529738810507</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -482,19 +468,19 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50053304" side_tool="true" weight="0.29847494" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5010661" side_tool="true" weight="0.16013072" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.16013072" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3278867" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32897604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.20479302" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2254902" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4850843" visible="true" weight="0.18550107" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48356164" visible="true" weight="0.18976545" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.32995737" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32995737" />
-      <window_info id="Structure" order="1" sideWeight="0.5149157" side_tool="true" visible="true" weight="0.18550107" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2342048" />
+      <window_info id="Structure" order="1" sideWeight="0.51643836" side_tool="true" visible="true" weight="0.18976545" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2342048" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -541,7 +527,8 @@
     <MESSAGE value="Completing the first version on the top right corner image splitting, and will solve the image split with gray data." />
     <MESSAGE value="add the test module for test function module" />
     <MESSAGE value="Completing the second version image split of the widget containing gray word." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completing the second version image split of the widget containing gray word." />
+    <MESSAGE value="Completing the middle_text_split and top_right_cornor_text_split in the img_middle_text_split and img_top_right_cornor_text_split." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completing the middle_text_split and top_right_cornor_text_split in the img_middle_text_split and img_top_right_cornor_text_split." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,7 +540,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py</url>
-          <line>344</line>
+          <line>274</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -563,11 +550,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Img_detection/img_middle_text_split.py</url>
-          <line>144</line>
+          <line>114</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Img_detection/detect_textbox.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="49" />
+      <option name="time" value="60" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -632,12 +624,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Img_processed/1527510227.png" />
-    <entry file="file://$PROJECT_DIR$/Image/18.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image/11.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Image/18.jpg" />
+    <entry file="file://$PROJECT_DIR$/Image/11.jpg" />
     <entry file="file://$PROJECT_DIR$/Image/1.jpg" />
     <entry file="file://$USER_HOME$/Anaconda3/envs/cv/Lib/site-packages/sklearn/cluster/k_means_.py" />
     <entry file="file://$USER_HOME$/Anaconda3/envs/cv/Lib/site-packages/sklearn/utils/validation.py" />
@@ -784,55 +772,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Img_detection/img_preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7889">
-          <caret line="345" selection-start-line="345" selection-end-line="345" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Img_detection/detect_textbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="222" column="24" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="24" />
-          <folding>
-            <element signature="e#15#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Img_detection/img_preprocessing.py" />
     <entry file="file://$PROJECT_DIR$/Img_detection/image_gray.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
+        <state relative-caret-position="15778">
           <caret line="688" column="4" selection-start-line="688" selection-start-column="4" selection-end-line="688" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test_module/test_gen_thresh_img_function.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
+        <state relative-caret-position="966">
           <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Img_detection/img_top_right_cornor_text_split.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19274">
+          <caret line="840" column="29" selection-start-line="840" selection-start-column="29" selection-end-line="840" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_module/test_detect_color_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Img_detection/img_middle_text_split.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="838" column="36" selection-start-line="838" selection-start-column="36" selection-end-line="838" selection-end-column="36" />
+        <state relative-caret-position="341">
+          <caret line="789" column="46" selection-end-line="806" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Img_detection/detect_textbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="848" lean-forward="true" selection-start-line="848" selection-end-line="848" />
+          <folding>
+            <element signature="e#15#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
