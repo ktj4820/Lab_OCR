@@ -45,7 +45,7 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
 
 
 if __name__ == '__main__':
-    input_image_address = "../Image/8.png"
+    input_image_address = "../Image/31.png"
     input_img = cv2.imread(input_image_address)
-    final_img = gen_thresh_img(input_img, threshold=125)
+    final_img = gen_thresh_img(input_img, threshold=85)
     final_img.show()

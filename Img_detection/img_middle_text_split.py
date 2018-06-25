@@ -801,6 +801,6 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
 
-    input_image = "../Image/12.png"
+    input_image = "../Image/31.png"
     raw_img = cv2.imread(input_image)
     char_split(raw_img)
