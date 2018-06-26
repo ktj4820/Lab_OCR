@@ -1,7 +1,56 @@
-# coding:utf-8
+# _*_coding:utf-8
 from PIL import Image
 import numpy as np
 import cv2
+
+
+def identify_panel_text(panel_text_input):
+    """
+    依据字符列平均字符数量，完成panel字符行鉴定
+    :param panel_text_input:
+    :return:
+    """
+
+    gray = cv2.cvtColor(panel_text_input, cv2.COLOR_BGR2GRAY)    # 转化成灰度图
+    sobel = cv2.Sobel(gray, cv2.CV_8U, 1, 0, ksize=1)   # Sobel算子，x方向求梯度
+    ret, panel_text_binary_img = cv2.threshold(sobel, 0, 255, cv2.THRESH_OTSU + cv2.THRESH_BINARY)    # 二值化
+    cv2.imshow('The binary row image for detection', panel_text_binary_img)
+    cv2.waitKey(0)
+
+    column_white_num = []  # 记录每一列的白色像素总和
+    column_black_num = []  # ..........黑色.......
+
+    char_image_height = panel_text_binary_img.shape[0]
+    char_width = panel_text_binary_img.shape[1]
+    column_white_num_max = 0
+    column_black_num_max = 0
+
+    # 计算每一列的黑白色像素总和
+    for i in range(char_width):
+        white_num = 0  # 这一列白色总数
+        black_num = 0  # 这一列黑色总数
+        for j in range(char_image_height):
+            if panel_text_binary_img[j][i] == 255:
+                white_num += 1
+            if panel_text_binary_img[j][i] == 0:
+                black_num += 1
+
+        column_white_num_max = max(column_white_num_max, white_num)
+        column_black_num_max = max(column_black_num_max, black_num)
+
+        column_white_num.append(white_num)  # 记录该列的白色像素总数
+        column_black_num.append(black_num)  # 记录该列的黑色像素总数
+
+    # 依据每列平均字符判定是否出现数字行以及出现了几行数字
+    avg_column_white = np.average(column_white_num)
+    print('avg_column_white:{}'.format(avg_column_white))
+
+    if avg_column_white < 2.45:
+        print("This's no text in panel")
+    elif avg_column_white < 4.5:
+        print("This's one line text in panel")
+    else:
+        print("This's two lines text in panel")
 
 
 def gen_thresh_img(cut_image, threshold, mode='binary'):
@@ -49,35 +98,11 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
 
 def detect_textbox(raw_img_input):
     """
-    分割图像，完成字符级切割
+    完成面板部分文本框切割，面板部分文字切割；返回对应面板部分文本框切割图及文字切割图
     :param raw_img_input:
-    :return:
+    :return: textbox, panel_text
     """
     # 分割图像，提取字符行
-    def find_end_row(start_row):
-        end_row = start_row + 1
-        '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
-        0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
-        对于白底黑字情况，则反之'''
-        for m in range(start_row + 1, image_height + 1):
-            if (row_black_num[m] if arg else row_white_num[m]) > \
-                    (0.85 * row_black_num_max if arg else 0.85 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
-                end_row = m
-                break
-        return end_row
-
-    # 分割图像，提取字符行
-    def find_reverse_end_row(start_row):
-        end_row = start_row - 1
-        '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
-        0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
-        对于白底黑字情况，则反之'''
-        for m in range(start_row - 1, int(image_height/2), -1):
-            if (row_black_num[m] if arg else row_white_num[m]) > \
-                    (0.85 * row_black_num_max if arg else 0.85 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
-                end_row = m
-                break
-        return end_row
 
     def find_real_start_row(real_image_height):
         find_real_start_row_mark = 5
@@ -103,9 +128,9 @@ def detect_textbox(raw_img_input):
             '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
             即将该行看做出现字符的起始行。
             对于白底黑字情况，则反之'''
-            if (row_white_num[initial_image_height-find_real_end_row_mark] if arg else row_black_num[find_real_end_row_mark]) > \
-                    (0.5 * row_white_num_max if arg else 0.8 * row_black_num_max) and \
-                    row_white_num[initial_image_height - find_real_end_row_mark - 1] <= 0.5 * row_white_num_max:
+            if (row_white_num[initial_image_height-find_real_end_row_mark] if arg else
+                row_black_num[find_real_end_row_mark]) > (0.5 * row_white_num_max if arg else 0.8 * row_black_num_max) \
+                    and row_white_num[initial_image_height - find_real_end_row_mark - 1] <= 0.5 * row_white_num_max:
 
                 real_row_end = initial_image_height-find_real_end_row_mark
 
@@ -223,7 +248,6 @@ def detect_textbox(raw_img_input):
         cv2.imshow('char_thresh_img', char_thresh_img)
         cv2.waitKey(0)
 
-        # thresh_img = cv2.cvtColor(np.asarray(thresh_img), cv2.COLOR_RGB2BGR)
         column_white_num = []  # 记录每一列的白色像素总和
         column_black_num = []  # ..........黑色.......
 
@@ -282,7 +306,7 @@ def detect_textbox(raw_img_input):
         cv2.destroyAllWindows()
         cv2.imwrite('../Img_processed/panel_text_{}.jpg'.format(final_panel_text_start_row - 1),
                     panel_text, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-        return textbox
+        return textbox, panel_text
 
 
 def detect_row_img_color(image):
@@ -421,6 +445,7 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
 
-    input_image = "../Image/61.png"
+    input_image = "../Image/73.png"
     raw_img = cv2.imread(input_image)
-    detect_textbox(raw_img)
+    textbox, panel_text = detect_textbox(raw_img)
+    identify_panel_text(panel_text)

@@ -827,22 +827,9 @@ def detect_row_img_color(image):
     return final_binary_img
 
 
-if __name__ == '__main__'               :
-    # input_image = "../Img_processed/row_split_18.jpg"
+if __name__ == '__main__':
+
     input_image = "../Image/10.png"
-    # print(get_dominant_color(Image.open("../Image/8.png")))
-    # get_dominant_color(input_image)
-
-    # gen_img_address = get_gery(input_image)
-    # img = cv2.imread('../Img_processed/%s.png' %    gen_img_addre                                         ss)
-
-    # cv2.imshow("binary_img.png", binary_img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
     raw_img = cv2.imread(input_image)
-    # row_split(raw_img)
     char_split(raw_img)
-    # get_gery(input_image)
 
-    # detect_row_img_color(input_image)
