@@ -11,10 +11,8 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
     :param mode:
     :return:
     """
+    # the format of image has changed from OpenCv to Image
     img = Image.fromarray(cv2.cvtColor(cut_image, cv2.COLOR_BGR2RGB))
-    # image = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    print("the format of image has changed from OpenCv to Image")
-    # img.show(title='The raw real image to be thresh')
     length_img = img.size[0]
     height_img = img.size[1]
     img2video = img.convert("YCbCr")
@@ -45,7 +43,7 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
 
 
 if __name__ == '__main__':
-    input_image_address = "../Image/36.png"
+    input_image_address = "../Image/79.png"
     input_img = cv2.imread(input_image_address)
-    final_img = gen_thresh_img(input_img, threshold=85)
+    final_img = gen_thresh_img(input_img, threshold=40)
     final_img.show()

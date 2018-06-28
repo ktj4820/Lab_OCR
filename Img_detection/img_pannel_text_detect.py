@@ -111,12 +111,12 @@ def detect_textbox(raw_img_input):
             '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
             即将该行看做出现字符的起始行。
             对于白底黑字情况，则反之'''
-            if (row_white_num[real_image_height - find_real_start_row_mark] if arg else row_black_num[real_image_height - find_real_start_row_mark]) >= \
+            if (row_white_num[real_image_height - find_real_start_row_mark] if arg else
+                row_black_num[real_image_height - find_real_start_row_mark]) >= \
                     (0.65 * row_white_num_max if arg else 0.85 * row_black_num_max) and \
                     (row_white_num[real_image_height - find_real_start_row_mark - 1] <= 0.5 * row_white_num_max):
 
                 real_start_row = real_image_height - find_real_start_row_mark
-                # real_start_row = find_end_row(find_real_start_row_mark)
 
                 return real_start_row
 
@@ -143,8 +143,8 @@ def detect_textbox(raw_img_input):
             '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
             即将该行看做出现字符的起始行。
             对于白底黑字情况，则反之'''
-            if (column_white_num[find_real_start_column_mark] if arg else row_black_num[find_real_start_column_mark]) >= \
-                    (0.7 * column_white_num_max if arg else 0.7 * column_black_num_max) and \
+            if (column_white_num[find_real_start_column_mark] if arg else row_black_num[find_real_start_column_mark]) \
+                    >= (0.7 * column_white_num_max if arg else 0.7 * column_black_num_max) and \
                     (column_white_num[find_real_start_column_mark + 1] <= 0.3 * column_white_num_max):
 
                 final_real_start_column = find_real_start_column_mark
@@ -158,8 +158,8 @@ def detect_textbox(raw_img_input):
             '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
             即将该行看做出现字符的起始行。
             对于白底黑字情况，则反之'''
-            if (column_white_num[initial_real_image_width - find_real_end_row_mark]) >= 0.55 * column_white_num_max and \
-                    column_white_num[initial_real_image_width - find_real_end_row_mark - 1] <= \
+            if (column_white_num[initial_real_image_width - find_real_end_row_mark]) >= 0.55 * column_white_num_max \
+                    and column_white_num[initial_real_image_width - find_real_end_row_mark - 1] <= \
                     0.45 * column_white_num_max:
 
                 real_column_end = initial_real_image_width - find_real_end_row_mark
