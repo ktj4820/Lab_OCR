@@ -15,7 +15,8 @@ def img_compression(input_image_address):
     cv2.imshow('img_compressed', img_compressed)
     cv2.waitKey(0)
     cv2.imwrite('../Image/img_compressed_{}.jpg'.format(1), img_compressed, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-    return img_to_change
+    # cv2.imwrite(target_folder + '/img_compressed.jpg', compressed_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+    return img_to_change, img_compressed
 
 
 def img_segmentation(initial_raw_img):
@@ -82,10 +83,10 @@ def img_segmentation(initial_raw_img):
         print('column_index:{}'.format(column_index_list))
 
         # 完成图像块第一步列切割
-        initial_img_block_one = initial_opencv_img[0:initial_height, 0:min(column_index_list) - 10]
-        initial_img_block_two = initial_opencv_img[0:initial_height,
-                                min(column_index_list) + 20:max(column_index_list) - 5]
-        initial_img_block_three = initial_opencv_img[0:initial_height, max(column_index_list) + 20:initial_width]
+        _initial_img_block_one = initial_opencv_img[0:initial_height, 0:min(column_index_list) - 10]
+        _initial_img_block_two = initial_opencv_img[
+                                 0:initial_height, min(column_index_list) + 20:max(column_index_list) - 5]
+        _initial_img_block_three = initial_opencv_img[0:initial_height, max(column_index_list) + 20:initial_width]
 
         # cv2.imshow('img_block_one', initial_img_block_one)
         # cv2.waitKey(0)
@@ -96,11 +97,11 @@ def img_segmentation(initial_raw_img):
         #
         # cv2.destroyAllWindows()
 
-        # 对第一列图像进行存档
-        cv2.imwrite('../Img_processed/img_block_one_{}.jpg'.format(min(column_index_list)),
-                    initial_img_block_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+        # # 对第一列图像进行存档
+        # cv2.imwrite('../Img_processed/img_block_one_{}.jpg'.format(min(column_index_list)),
+        #             _initial_img_block_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
-        return initial_img_block_one, initial_img_block_two, initial_img_block_three
+        return _initial_img_block_one, _initial_img_block_two, _initial_img_block_three
 
     def img_block_two_split(img_block_two_input):
         """
@@ -278,7 +279,7 @@ def img_segmentation(initial_raw_img):
         cv2.waitKey(0)
 
         return _img_block_three_block_one, _img_block_three_block_two, _img_block_three_block_three, \
-               _img_block_three_block_four
+            _img_block_three_block_four
 
     def img_block_three_block_four_split(img_block_three_block_four_input):
 
@@ -355,21 +356,23 @@ def img_segmentation(initial_raw_img):
 
         img_three_col_four_row_split_index.sort()
         # 完成右下角图像块行切割
-        img_three_col_four_row_one = img_block_three_block_four_input[
+        _img_three_col_four_row_one = img_block_three_block_four_input[
                                      0:img_three_col_four_row_height,
                                      img_three_col_four_row_split_index[0] - 5:
                                      img_three_col_four_row_split_index[1] + 15]
 
-        img_three_col_four_row_two = img_block_three_block_four_input[
+        _img_three_col_four_row_two = img_block_three_block_four_input[
                                      0:img_three_col_four_row_height,
                                      img_three_col_four_row_split_index[1] + 15:
                                      img_three_col_four_row_split_index[2] + 5]
 
         # # cv2.namedWindow("img_block_three_block_one", cv2.WINDOW_NORMAL)
-        cv2.imshow('img_three_col_four_row_one', img_three_col_four_row_one)
+        cv2.imshow('img_three_col_four_row_one', _img_three_col_four_row_one)
         cv2.waitKey(0)
-        cv2.imshow('img_three_col_four_row_two', img_three_col_four_row_two)
+        cv2.imshow('img_three_col_four_row_two', _img_three_col_four_row_two)
         cv2.waitKey(0)
+
+        return _img_three_col_four_row_one, _img_three_col_four_row_two
 
     def img_block_two_block_one_split(img_block_two_block_one_input):
 
@@ -551,12 +554,10 @@ def img_segmentation(initial_raw_img):
 
         # 寻找列一结束点
         for img_two_one_column_index in range(len(img_two_one_column_white_num)):
-            if img_two_one_column_index_list[0] + 50 < img_two_one_column_index < len(img_two_one_column_white_num) - 11:
+            if img_two_one_column_index_list[0] + 50 < img_two_one_column_index < \
+                    len(img_two_one_column_white_num) - 11:
                 img_two_one_second_point_count = 0
                 for mid_point_threshold in range(10):
-                    # if (0 <= (img_two_one_column_index - mid_point_threshold) < len(img_two_one_column_white_num)) and \
-                    #         (0 <= (img_two_one_column_index + mid_point_threshold + 1) <
-                    #          len(img_two_one_column_white_num)):
                     if img_two_one_column_white_num[
                         img_two_one_column_index - mid_point_threshold] >= img_two_one_column_white_num_max * 0.01 and \
                             img_two_one_column_white_num[img_two_one_column_index + mid_point_threshold + 1] < \
@@ -633,12 +634,26 @@ def img_segmentation(initial_raw_img):
         cv2.imshow('_img_lower_right_panel', _img_lower_right_panel)
         cv2.waitKey(0)
 
+        return _img_two_one_row_one, _img_top_left_panel, _img_top_right_panel, _img_lower_left_panel,\
+            _img_lower_right_panel
+
     initial_img_block_one, initial_img_block_two, initial_img_block_three = img_column_split(initial_raw_img)
-    initial_img_block_two_block_one, _ = img_block_two_split(initial_img_block_two)
-    img_block_two_block_one_split(initial_img_block_two_block_one)
+
+    initial_img_block_two_block_one, initial_img_block_two_block_two = img_block_two_split(initial_img_block_two)
+
+    img_two_one_row_one, img_top_left_panel, img_top_right_panel, img_lower_left_panel, img_lower_right_panel = \
+        img_block_two_block_one_split(initial_img_block_two_block_one)
+
     img_block_three_block_one, img_block_three_block_two, img_block_three_block_three, img_block_three_block_four = \
         img_block_three_split(initial_img_block_three)
-    img_block_three_block_four_split(img_block_three_block_four)
+
+    img_three_col_four_row_one, img_three_col_four_row_two = \
+        img_block_three_block_four_split(img_block_three_block_four)
+
+    return initial_img_block_one, img_two_one_row_one, img_top_left_panel, \
+        img_top_right_panel, img_lower_left_panel, img_lower_right_panel, initial_img_block_two_block_two, \
+        img_block_three_block_one, img_block_three_block_two, img_block_three_block_three, \
+        img_three_col_four_row_one, img_three_col_four_row_two
 
 
 def identify_panel_text(panel_text_input):
@@ -731,216 +746,6 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
     else:
         # print('return: gen_img')
         return gen_img
-
-
-def detect_textbox(raw_img_input):
-    """
-    完成面板部分文本框切割，面板部分文字切割；返回对应面板部分文本框切割图及文字切割图
-    :param raw_img_input:
-    :return: textbox, panel_text
-    """
-
-    # 分割图像，提取字符行
-
-    def find_real_start_row(real_image_height_input):
-        find_real_start_row_mark = 5
-        while find_real_start_row_mark < real_image_height_input - 2:
-            find_real_start_row_mark += 1
-            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
-            即将该行看做出现字符的起始行。
-            对于白底黑字情况，则反之'''
-            if (row_white_num[real_image_height_input - find_real_start_row_mark] if arg else
-            row_black_num[real_image_height_input - find_real_start_row_mark]) >= \
-                    (0.65 * row_white_num_max if arg else 0.85 * row_black_num_max) and \
-                    (row_white_num[real_image_height_input - find_real_start_row_mark - 1] <= 0.5 * row_white_num_max):
-                real_start_row = real_image_height_input - find_real_start_row_mark
-
-                return real_start_row
-
-    def find_real_height(initial_real_image_height):
-        find_real_end_row_mark = 0
-        initial_image_height = initial_real_image_height
-        while find_real_end_row_mark < initial_image_height - 2:
-            find_real_end_row_mark += 1
-            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
-            即将该行看做出现字符的起始行。
-            对于白底黑字情况，则反之'''
-            if (row_white_num[initial_image_height - find_real_end_row_mark] if arg else
-            row_black_num[find_real_end_row_mark]) > (0.5 * row_white_num_max if arg else 0.8 * row_black_num_max) \
-                    and row_white_num[initial_image_height - find_real_end_row_mark - 1] <= 0.5 * row_white_num_max:
-                real_row_end = initial_image_height - find_real_end_row_mark
-
-                return real_row_end
-
-    def find_real_start_column(initial_real_image_width):
-        find_real_start_column_mark = 0
-        while find_real_start_column_mark < initial_real_image_width - 2:
-            find_real_start_column_mark += 1
-            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
-            即将该行看做出现字符的起始行。
-            对于白底黑字情况，则反之'''
-            if (column_white_num[find_real_start_column_mark] if arg else row_black_num[find_real_start_column_mark]) \
-                    >= (0.7 * column_white_num_max if arg else 0.7 * column_black_num_max) and \
-                    (column_white_num[find_real_start_column_mark + 1] <= 0.3 * column_white_num_max):
-                final_real_start_column = find_real_start_column_mark
-                return final_real_start_column
-
-    def find_real_end_column(initial_real_image_width):
-        find_real_end_row_mark = 0
-        # initial_image_height = initial_real_image_width
-        while find_real_end_row_mark < initial_real_image_width - 2:
-            find_real_end_row_mark += 1
-            '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
-            即将该行看做出现字符的起始行。
-            对于白底黑字情况，则反之'''
-            if (column_white_num[initial_real_image_width - find_real_end_row_mark]) >= 0.55 * column_white_num_max \
-                    and column_white_num[initial_real_image_width - find_real_end_row_mark - 1] <= \
-                    0.45 * column_white_num_max:
-                real_column_end = initial_real_image_width - find_real_end_row_mark
-
-                return real_column_end
-
-    def find_instrument_panel_text(initial_row_split_start, initial_real_start_column):
-
-        panel_text_start_row = initial_row_split_start - 35
-        panel_text_end_row = initial_row_split_start - 5
-        panel_text_start_column = initial_real_start_column - 20
-        panel_text_end_column = initial_real_start_column + 15
-
-        return panel_text_start_row, panel_text_end_row, panel_text_start_column, panel_text_end_column
-
-    # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
-    gen_raw_img = gen_thresh_img(raw_img_input, threshold=50, mode='fixed')  # 生成gen_raw_img图片格式为PIL格式
-    gen_img = cv2.cvtColor(np.asarray(gen_raw_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
-    img_gray = cv2.cvtColor(gen_img, cv2.COLOR_BGR2GRAY)
-    _, thresh_img = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)  # 得到二值图
-
-    cv2.imshow('The binary row image for detection', thresh_img)
-    cv2.waitKey(0)
-
-    # thresh_img = cv2.cvtColor(np.asarray(thresh_img), cv2.COLOR_RGB2BGR)
-    row_white_num = []  # 记录每一行的白色像素总和
-    row_black_num = []  # ..........黑色.......
-    image_height = thresh_img.shape[0]
-    width = thresh_img.shape[1]
-    row_white_num_max = 0
-    row_black_num_max = 0
-
-    # 计算每一行的黑白色像素总和
-    for i in range(image_height):
-        white_num = 0  # 这一行白色总数
-        black_num = 0  # 这一行黑色总数
-        for j in range(width):
-            if thresh_img[i][j] == 255:
-                white_num += 1
-            if thresh_img[i][j] == 0:
-                black_num += 1
-        row_white_num_max = max(row_white_num_max, white_num)
-        row_black_num_max = max(row_black_num_max, black_num)
-        row_white_num.append(white_num)  # 记录该行的白色像素总数
-        row_black_num.append(black_num)  # 记录该行的黑色像素总数
-
-    arg = True
-    '''arg = True表示黑底白字, arg = False表示白底黑字'''
-    if row_black_num_max < row_white_num_max:
-        arg = False
-
-    # 寻找文本框起始行与结束行
-    real_image_height = find_real_height(image_height)
-    img_textbox_start = find_real_start_row(real_image_height)
-
-    while img_textbox_start < image_height - 2:
-        img_textbox_start += 1
-        row_find_end = real_image_height
-        # 因为行间隔比较大，故而在此取检测出现字符行的前面的第3行作为行切割开始行（保证将框切割进去）
-        row_split_start = img_textbox_start - 3 if img_textbox_start > 3 else img_textbox_start
-        row_split_end = row_find_end + 3 if row_find_end + 3 < image_height else row_find_end
-
-        # 对应上述标准完成原图切割、显示、保存（注意是对原图的切割，而非二值图）
-        raw_image_split_row = raw_img_input[row_split_start:row_split_end, 0:width]
-        cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(img_textbox_start - 1),
-                    raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-
-        '''
-        得到行切割图像，直接对原图像进行颜色判定，进而完成选定亮度阈值，最后得到二值图，显示并保存
-        '''
-        binary_img = detect_row_img_color(raw_image_split_row)
-        binary_img.save('../Img_processed/binary_row_{}.jpg'.format(img_textbox_start - 1))
-        '''
-        此处，不在将分行处理结果转变为二值图，而是转变为只有0与255的RGB图，以便于进行字符切割中的Image到OpenCV转换
-        下面正式开始字符切割：
-        '''
-
-        # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
-        char_gen_img = cv2.cvtColor(np.asarray(binary_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
-        cv2.imshow('char_gen_img', char_gen_img)
-        cv2.waitKey(0)
-        # print('Complete the format of char_split method from Image to OpenCV')
-        char_img_gray = cv2.cvtColor(char_gen_img, cv2.COLOR_BGR2GRAY)
-        _, char_thresh_img = cv2.threshold(char_img_gray, 127, 255, cv2.THRESH_BINARY)  # 得到二值图
-
-        cv2.imshow('char_thresh_img', char_thresh_img)
-        cv2.waitKey(0)
-
-        column_white_num = []  # 记录每一列的白色像素总和
-        column_black_num = []  # ..........黑色.......
-
-        char_image_height = char_thresh_img.shape[0]
-        char_width = char_thresh_img.shape[1]
-        column_white_num_max = 0
-        column_black_num_max = 0
-
-        # 计算每一列的黑白色像素总和
-        for i in range(char_width):
-            white_num = 0  # 这一列白色总数
-            black_num = 0  # 这一列黑色总数
-            for j in range(char_image_height):
-                if char_thresh_img[j][i] == 255:
-                    white_num += 1
-                if char_thresh_img[j][i] == 0:
-                    black_num += 1
-
-            column_white_num_max = max(column_white_num_max, white_num)
-            column_black_num_max = max(column_black_num_max, black_num)
-
-            column_white_num.append(white_num)  # 记录该列的白色像素总数
-            column_black_num.append(black_num)  # 记录该列的黑色像素总数
-
-        # 寻找文本框起始行与结束行
-        real_start_column = find_real_start_column(char_width)
-        real_end_column = find_real_end_column(char_width)
-
-        real_start_column -= 3 if real_start_column - 3 >= 0 else real_start_column
-        real_end_column += 3 if real_end_column + 3 <= char_width else real_end_column
-
-        textbox = char_thresh_img[0:char_image_height, real_start_column:real_end_column]
-
-        cv2.imshow('raw_image_split_char', textbox)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        cv2.imwrite('../Img_processed/textbox_{}.jpg'.format(real_start_column - 1),
-                    textbox, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-
-        print("textbox coordinates: ")
-        print("upper left coordinate {}, lower left coordinate {},".format((
-            row_split_start, real_start_column), (row_split_end, real_start_column)))
-        print(" top right coordinate {}, lower right coordinate {}".format((
-            row_split_start, real_end_column), (row_split_end, real_end_column)))
-
-        final_panel_text_start_row, final_panel_text_end_row, final_panel_text_start_column, \
-        final_panel_text_end_column = find_instrument_panel_text(row_split_start, real_start_column)
-
-        panel_text = raw_img_input[
-                     final_panel_text_start_row:final_panel_text_end_row,
-                     final_panel_text_start_column:final_panel_text_end_column
-                     ]
-
-        cv2.imshow('panel_text', panel_text)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        cv2.imwrite('../Img_processed/panel_text_{}.jpg'.format(final_panel_text_start_row - 1),
-                    panel_text, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-        return textbox, panel_text
 
 
 def detect_row_img_color(image):
@@ -1081,7 +886,32 @@ if __name__ == '__main__':
     for name_index in range(97, 115, 1):
         input_image = "../Image/" + str(name_index) + ".png"
         # input_image = "../Image/panel_text_1.jpg"
-        compressed_img = img_compression(input_image)
+        compressed_img, compressed_opencv_img = img_compression(input_image)
         # compressed_img = img_compression(initial_img_address=input_image)
-        img_segmentation(compressed_img)
+        img_one, img_two_one_row_one, img_top_left_panel, img_top_right_panel, img_lower_left_panel, \
+            img_lower_right_panel, img_two_two, img_three_one, img_three_two, img_three_three, img_three_four_one, \
+            img_three_four_two = img_segmentation(compressed_img)
+
+        target_folder_base = "C:/Users/dby_freedom/Desktop/Lab_OCR/Img_processed/"
+        folder_name = (os.path.basename(input_image)).split(".")[0]
+        target_folder = target_folder_base + str(folder_name)
+        print('target_folder: {}'.format(target_folder))
+        if not os.path.exists(target_folder):
+            os.mkdir(target_folder)
+            cv2.imwrite(target_folder + '/img_compressed.jpg', compressed_opencv_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_two_one_row_one.jpg', img_two_one_row_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_top_left_panel.jpg', img_top_left_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_top_right_panel.jpg', img_top_right_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_lower_left_panel.jpg', img_lower_left_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_lower_right_panel.jpg', img_lower_right_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_two_two.jpg', img_two_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_one.jpg', img_three_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_two.jpg', img_three_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_three.jpg', img_three_three, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_four_one.jpg', img_three_four_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_four_two.jpg', img_three_four_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+        else:
+            print(target_folder + " already exists")
+            pass
+
         cv2.destroyAllWindows()
