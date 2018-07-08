@@ -4,6 +4,32 @@ import numpy as np
 import cv2
 
 
+def img_compression(to_compress_img, compressed_height_pixel):
+    """
+    完成图像压缩
+    :param to_compress_img: 待压缩的图像
+    :param compressed_height_pixel: 压缩图像对应width pixel
+    :return: 压缩后图像
+    """
+
+    # 判定是否是Image格式，如果是OpenCV的'BGR'格式则需要转换成Image的'RGB'格式
+    if isinstance(to_compress_img, np.ndarray):
+        img_to_compress = Image.fromarray(cv2.cvtColor(to_compress_img, cv2.COLOR_BGR2RGB))
+    else:
+        img_to_compress = to_compress_img
+    # img_to_compress = Image.open(input_image_address)
+    img_width, img_height = img_to_compress.size
+
+    change_ratio = img_height / compressed_height_pixel
+    compressed_width = int(img_width / change_ratio)
+    img_to_change = img_to_compress.resize((compressed_width, compressed_height_pixel), Image.ANTIALIAS)
+    img_compressed = cv2.cvtColor(np.asarray(img_to_change), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
+    cv2.imshow('img_compressed', img_compressed)
+    cv2.waitKey(0)
+    # cv2.imwrite('../Image/img_compressed_{}.jpg'.format(1), img_compressed, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+    return img_compressed
+
+
 def gen_thresh_img(cut_image, threshold, mode='binary'):
     """
     依据图像亮度，进行图像二值化（保留原图像）
@@ -96,6 +122,8 @@ def char_split(raw_img_input):
                 break
         return end_row
 
+    # 首先，对图像进行压缩，这里默认压缩为height = 380
+    raw_img_input = img_compression(raw_img_input, 380)
     # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
     gen_raw_img = gen_thresh_img(raw_img_input, threshold=50, mode='fixed')  # 生成gen_raw_img图片格式为PIL格式
     gen_img = cv2.cvtColor(np.asarray(gen_raw_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
@@ -162,8 +190,8 @@ def char_split(raw_img_input):
                 # cv2.imshow('raw_image_split_row', raw_image_split_row)
                 # cv2.waitKey(0)
                 # cv2.destroyAllWindows()
-                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
-                            raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
+                #             raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                 '''
                 得到行切割图像，直接对原图像进行颜色判定，进而完成选定亮度阈值，最后得到二值图，显示并保存
@@ -171,8 +199,8 @@ def char_split(raw_img_input):
                 binary_img = detect_row_img_color(raw_image_split_row)
 
                 # final_binary_img_save_name = 'final_row_binary'
-                binary_img.save('../Img_processed/binary_row_{}.jpg'.format(row_mark - 1))
-                print('Completing the row image split')
+                # binary_img.save('../Img_processed/binary_row_{}.jpg'.format(row_mark - 1))
+                # print('Completing the row image split')
                 '''
                 此处，不在将分行处理结果转变为二值图，而是转变为只有0与255的RGB图，以便于进行字符切割中的Image到OpenCV转换
                 下面正式开始字符切割：
@@ -201,7 +229,7 @@ def char_split(raw_img_input):
                 char_gen_img = cv2.cvtColor(np.asarray(binary_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
                 cv2.imshow('char_gen_img', char_gen_img)
                 cv2.waitKey(0)
-                print('Complete the format of char_split method from Image to OpenCV')
+                # print('Complete the format of char_split method from Image to OpenCV')
                 char_img_gray = cv2.cvtColor(char_gen_img, cv2.COLOR_BGR2GRAY)
                 _, char_thresh_img = cv2.threshold(char_img_gray, 127, 255, cv2.THRESH_BINARY)  # 得到二值图
 
@@ -303,8 +331,8 @@ def char_split(raw_img_input):
                                     cv2.imshow('raw_image_split_char', raw_image_split_char)
                                     cv2.waitKey(0)
                                     cv2.destroyAllWindows()
-                                    cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                                raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                    # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                    #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 # 进行小数点判定，阈值设到0.34保证能承受大约3个像素点
                                 elif column_white_num[column_mark] / column_white_num_max < 0.34 and\
@@ -331,8 +359,8 @@ def char_split(raw_img_input):
                                     cv2.imshow('raw_image_split_char', raw_image_split_char)
                                     cv2.waitKey(0)
                                     cv2.destroyAllWindows()
-                                    cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                                raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                    # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                    #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
                                 # 不满足上述情况，判定为孤立噪声点（即前后5个像素之间无像素）
                                 else:
                                     continue
@@ -364,8 +392,8 @@ def char_split(raw_img_input):
                                     cv2.imshow('raw_image_split_char', raw_image_split_char)
                                     cv2.waitKey(0)
                                     cv2.destroyAllWindows()
-                                    cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                                raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                    # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                    #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 # 进行小数点判定，同理，阈值设到0.34，保证能承受大约3个像素值
                                 elif column_white_num[column_mark] / column_white_num_max and \
@@ -393,8 +421,8 @@ def char_split(raw_img_input):
                                     cv2.imshow('raw_image_split_char', raw_image_split_char)
                                     cv2.waitKey(0)
                                     cv2.destroyAllWindows()
-                                    cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                                raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                    # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                    #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 # 否则当做噪声点进行处理
                                 else:
@@ -432,14 +460,14 @@ def char_split(raw_img_input):
                                 cv2.imshow('first_raw_image_split_char', first_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
-                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
+                                #             first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
-                                            second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
+                                #             second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                             elif 0.63 < char_split_height / char_split_width <= 0.85:  # 出现三字符情况
 
@@ -474,22 +502,22 @@ def char_split(raw_img_input):
                                 cv2.imshow('first_raw_image_split_char', first_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
-                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
+                                #             first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
-                                    second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
+                                #     second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('third_raw_image_split_char', third_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
-                                    second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
+                                #     second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                             elif 0.42 < char_split_height / char_split_width <= 0.63:  # 出现4字符情况
 
@@ -531,28 +559,28 @@ def char_split(raw_img_input):
                                 cv2.imshow('first_raw_image_split_char', first_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
-                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
+                                #             first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
-                                            second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
+                                #             second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('third_raw_image_split_char', third_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
-                                    third_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
+                                #     third_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('fourth_raw_image_split_char', fourth_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(fourth_char_split_start - 1),
-                                    fourth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(fourth_char_split_start - 1),
+                                #     fourth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                             elif char_split_height / char_split_width <= 0.42:  # 出现5字符情况
 
@@ -601,35 +629,35 @@ def char_split(raw_img_input):
                                 cv2.imshow('first_raw_image_split_char', first_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
-                                            first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(first_char_split_start - 1),
+                                #             first_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('second_raw_image_split_char', second_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
-                                            second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(second_char_split_start - 1),
+                                #             second_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('third_raw_image_split_char', third_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
-                                    third_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(third_char_split_start - 1),
+                                #     third_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('fourth_raw_image_split_char', fourth_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(fourth_char_split_start - 1),
-                                    fourth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(fourth_char_split_start - 1),
+                                #     fourth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                                 cv2.imshow('fourth_raw_image_split_char', fifth_raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite(
-                                    '../Img_processed/char_split_{}.jpg'.format(fifth_char_split_start - 1),
-                                    fifth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite(
+                                #     '../Img_processed/char_split_{}.jpg'.format(fifth_char_split_start - 1),
+                                #     fifth_raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                             else:
 
@@ -657,8 +685,8 @@ def char_split(raw_img_input):
                                 cv2.imshow('raw_image_split_char', raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                            raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                         column_mark = column_find_end  # 不管检测到的列是不是字符，都将结束列重新赋值给开始列，进行下一轮循环
 
@@ -689,8 +717,8 @@ def char_split(raw_img_input):
                                 cv2.imshow('raw_image_split_char', raw_image_split_char)
                                 cv2.waitKey(0)
                                 cv2.destroyAllWindows()
-                                cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
-                                            raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                                # cv2.imwrite('../Img_processed/char_split_{}.jpg'.format(column_mark - 1),
+                                #             raw_image_split_char, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
             # row_find_end
             row_mark = row_find_end  # 无论是否进行行切割，将本次切割结束位置复制给下一次行切割初始点
 
@@ -710,13 +738,16 @@ def detect_row_img_color(image):
     bgr_yellow = [98, 158, 195]  # 黄色判定基准
     bgr_white = [195, 195, 195]  # 白色判定基准
 
-    def detect_img_submodule(submodule_img, color_to_check, thresh_red = 40):
+    def detect_img_submodule(submodule_img, color_to_check, thresh_red=40, thresh_bg=40):
 
         bright = submodule_img
-        bgr = color_to_check
-        thresh = 40  # 上下范围扩展40
-        min_bgr = np.array([bgr[0] - thresh, bgr[1] - thresh, bgr[2] - thresh_red])
-        max_bgr = np.array([bgr[0] + thresh, bgr[1] + thresh, bgr[2] + thresh_red])
+        detect_img_bgr = color_to_check
+        # thresh_bg = 40  # 上下范围扩展40
+        min_bgr = np.array([detect_img_bgr[0] - thresh_bg, detect_img_bgr[1] - thresh_bg,
+                            detect_img_bgr[2] - thresh_red])
+
+        max_bgr = np.array([detect_img_bgr[0] + thresh_bg, detect_img_bgr[1] + thresh_bg,
+                            detect_img_bgr[2] + thresh_red])
 
         mask_bgr = cv2.inRange(bright, min_bgr, max_bgr)
         result_bgr = cv2.bitwise_and(bright, bright, mask=mask_bgr)
@@ -804,7 +835,7 @@ def detect_row_img_color(image):
         cv2.waitKey(0)
         final_binary_img = gen_thresh_img(filter_for_red_img, threshold=65, mode='dynamic')
 
-    elif check_color(detect_img_submodule(img, bgr_light_blue)):
+    elif check_color(detect_img_submodule(img, bgr_light_blue, thresh_red=60, thresh_bg=60)):
         print('This row image is light blue')
         # 依照淡蓝字体对应亮度进行二值化处理
         final_binary_img = gen_thresh_img(img, threshold=100, mode='dynamic')
@@ -829,7 +860,7 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
 
-    input_image = "../Image/10.png"
+    input_image = "../Img_processed/106/img_three_one.jpg"
     raw_img = cv2.imread(input_image)
     char_split(raw_img)
 

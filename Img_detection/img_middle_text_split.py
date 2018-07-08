@@ -4,6 +4,32 @@ import numpy as np
 import cv2
 
 
+def img_compression(to_compress_img, compressed_height_pixel):
+    """
+    完成图像压缩
+    :param to_compress_img: 待压缩的图像
+    :param compressed_height_pixel: 压缩图像对应width pixel
+    :return: 压缩后图像
+    """
+
+    # 判定是否是Image格式，如果是OpenCV的'BGR'格式则需要转换成Image的'RGB'格式
+    if isinstance(to_compress_img, np.ndarray):
+        img_to_compress = Image.fromarray(cv2.cvtColor(to_compress_img, cv2.COLOR_BGR2RGB))
+    else:
+        img_to_compress = to_compress_img
+    # img_to_compress = Image.open(input_image_address)
+    img_width, img_height = img_to_compress.size
+
+    change_ratio = img_height / compressed_height_pixel
+    compressed_width = int(img_width / change_ratio)
+    img_to_change = img_to_compress.resize((compressed_width, compressed_height_pixel), Image.ANTIALIAS)
+    img_compressed = cv2.cvtColor(np.asarray(img_to_change), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
+    cv2.imshow('img_compressed', img_compressed)
+    cv2.waitKey(0)
+    # cv2.imwrite('../Image/img_compressed_{}.jpg'.format(1), img_compressed, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+    return img_compressed
+
+
 def gen_thresh_img(cut_image, threshold, mode='binary'):
     """
     依据图像亮度，进行图像二值化（保留原图像）
@@ -59,14 +85,49 @@ def char_split(raw_img_input):
         '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
         0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
         对于白底黑字情况，则反之'''
+
+        text_box_line_count = 0
+        text_box_line_mark = False
         for m in range(start_row + 1, image_height + 1):
-            if (row_black_num[m] if arg else row_white_num[m]) > \
-                    (0.95 * row_black_num_max if arg else 0.95 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
-                end_row = m
-                break
+            # if (row_black_num[m] if arg else row_white_num[m]) > \
+            #         (0.7 * row_black_num_max if arg else 0.95 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
+            #     end_row = m
+
+            # 添加判断过滤框线
+            for text_box_line_range in range(20):
+                if m + text_box_line_range + 1 < image_height:
+                    m_mark = m + text_box_line_range + 1
+                else:
+                    m_mark = m
+                if (row_white_num[m]) > 0 and row_white_num[m_mark] > 0:
+                    text_box_line_count += 1
+
+            if text_box_line_count == 20:
+                text_box_line_mark = True
+
+            text_box_line_count = 0
+
+            # 首先判定没有出现边框的情况
+            if not text_box_line_mark:
+                if (row_white_num[m] if arg else row_black_num[m]) < 3:  # 0.95这个参数请多调整，对应下面的0.05
+                    end_row = m
+                    break
+            # 处理出现边框的情况
+            else:
+                if (row_black_num[m] if arg else row_white_num[m]) > \
+                        (0.95 * row_black_num_max if arg else 0.95 * row_white_num_max):  # 0.95这个参数请多调整，对应下面的0.05
+                    end_row = m
+                    break
+
+        # for mid_point_threshold in range(25):
+        #     if img_three_col_four_row[img_three_col_four_row_column_index] > 0 and \
+        #             img_three_col_four_row[img_three_col_four_row_column_index + mid_point_threshold + 1] == 0:
+
         return end_row
 
-    # 首先，依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
+    # 首先，对图像进行压缩，这里默认压缩为height = 380
+    raw_img_input = img_compression(raw_img_input, 490)
+    # 依据亮度值得到黑白图像（虽然像素值只有0与255，但有BGR三个维度）
     gen_raw_img = gen_thresh_img(raw_img_input, threshold=50, mode='fixed')  # 生成gen_raw_img图片格式为PIL格式
     gen_img = cv2.cvtColor(np.asarray(gen_raw_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
     img_gray = cv2.cvtColor(gen_img, cv2.COLOR_BGR2GRAY)
@@ -104,6 +165,8 @@ def char_split(raw_img_input):
 
     row_mark = 1
 
+    print('row_white_num[row_mark]:{}'.format(row_white_num))
+
     while row_mark < image_height - 2:
         row_mark += 1
         '''arg = True，即黑底白字情况下，第n行的白色像素数目和 > 0.05 * （所有行中白色像素数目和的最大值），
@@ -114,7 +177,7 @@ def char_split(raw_img_input):
 
             row_find_end = find_end_row(row_mark)
 
-            if row_find_end - row_mark > 5:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
+            if row_find_end - row_mark > 7:  # 要求切割字符行需要有5行以上的距离是为了保证排除直线的干扰
 
                 # 因为行间隔比较大，故而在此取检测出现字符行的前面的第3行作为行切割开始行（行长为12）
                 row_split_start = row_mark - 3 if row_mark > 3 else row_mark
@@ -132,8 +195,8 @@ def char_split(raw_img_input):
                 # cv2.imshow('raw_image_split_row', raw_image_split_row)
                 # cv2.waitKey(0)
                 # cv2.destroyAllWindows()
-                cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
-                            raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+                # cv2.imwrite('../Img_processed/row_split_{}.jpg'.format(row_mark - 1),
+                #             raw_image_split_row, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
                 '''
                 得到行切割图像，直接对原图像进行颜色判定，进而完成选定亮度阈值，最后得到二值图，显示并保存
@@ -141,8 +204,8 @@ def char_split(raw_img_input):
                 binary_img = detect_row_img_color(raw_image_split_row)
 
                 # final_binary_img_save_name = 'final_row_binary'
-                binary_img.save('../Img_processed/binary_row_{}.jpg'.format(row_mark - 1))
-                print('Completing the row image split')
+                # binary_img.save('../Img_processed/binary_row_{}.jpg'.format(row_mark - 1))
+                # print('Completing the row image split')
                 '''
                 此处，不在将分行处理结果转变为二值图，而是转变为只有0与255的RGB图，以便于进行字符切割中的Image到OpenCV转换
                 下面正式开始字符切割：
@@ -156,7 +219,10 @@ def char_split(raw_img_input):
                     '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
                     0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
                     对于白底黑字情况，则反之'''
+
+                    split_end_column = None
                     for m in range(start_column, char_width + 1):
+
                         # 0.95这个参数请多调整，对应下面的0.05
                         if (column_black_num[m] if char_arg else column_white_num[m]) > \
                                 (0.96 * column_black_num_max if arg else 0.96 * column_white_num_max) \
@@ -171,7 +237,7 @@ def char_split(raw_img_input):
                 char_gen_img = cv2.cvtColor(np.asarray(binary_img), cv2.COLOR_RGB2BGR)  # 转换为OpenCV图片格式
                 cv2.imshow('char_gen_img', char_gen_img)
                 cv2.waitKey(0)
-                print('Complete the format of char_split method from Image to OpenCV')
+                # print('Complete the format of char_split method from Image to OpenCV')
                 char_img_gray = cv2.cvtColor(char_gen_img, cv2.COLOR_BGR2GRAY)
                 _, char_thresh_img = cv2.threshold(char_img_gray, 127, 255, cv2.THRESH_BINARY)  # 得到二值图
 
@@ -226,17 +292,18 @@ def char_split(raw_img_input):
                     '''
 
                     # 首先检测列方框线，判定规则为列框线长度与行高之差在1之内，若检测到，将与之相连的线也一并直接过滤，进入下轮检测。
-                    if (char_image_height if char_arg else column_black_num_max) - \
-                            (column_white_num[column_mark] if char_arg else column_black_num[column_mark]) <= 1 and \
-                            column_white_num[column_mark+1] > 0 and column_white_num[column_mark+2] == 0:
-
-                        column_mark += 1
-                        continue
-
-                    # 首先检测列方框线，判定规则为列框线长度与行高之差在1之内，直接过滤则直接过滤进入下轮检测。
-                    if (char_image_height if char_arg else column_black_num_max) - \
-                            (column_white_num[column_mark] if char_arg else column_black_num[column_mark]) <= 1:
-
+                    if (char_image_height - (column_white_num[column_mark - 2])) <= 1 or \
+                            (char_image_height - (column_white_num[column_mark - 1])) <= 1 or \
+                            (char_image_height - (column_white_num[column_mark])) <= 1 or \
+                            (char_image_height - (column_white_num[column_mark + 1] if (
+                                    column_mark + 1 < char_width) else column_white_num[column_mark])) <= 1 or \
+                            (char_image_height - (column_white_num[column_mark + 2] if (
+                                    column_mark + 2 < char_width) else column_white_num[column_mark])) <= 1:
+                        column_white_num[column_mark] = 0
+                        column_white_num[column_mark - 1] = 0
+                        column_white_num[column_mark - 2] = 0
+                        column_white_num[column_mark + 1] = 0
+                        column_white_num[column_mark + 2] = 0
                         continue
 
                     elif (column_white_num[column_mark] if char_arg else column_black_num[column_mark]) > \
@@ -244,7 +311,7 @@ def char_split(raw_img_input):
 
                         column_find_end = find_end_column(column_mark)
 
-                        # 对于一般字符判定：最短字符长度为3，因此要求字符列长必须在3以上
+                        # 对于一般字符判定：最短字符长度为3，因        此要求字符列长必须在3以上
                         # 对于数字1判定：当列包含字符长度高于一定阈值，则即便列宽为1依旧视为字符处理
                         if column_find_end - column_mark <= 2:
                             # 首先进行数字1判定，拿开始列字符所含字符像素数目大于所有列中最大字符像素数的0.8作为判定条件
@@ -677,17 +744,18 @@ def detect_row_img_color(image):
     # python
     bgr_red = [40, 40, 180]  # 红色判定基准
     bgr_light_blue = [176, 181, 57]  # 淡蓝判定基准
-    bgr_yellow = [98, 158, 195]  # 黄色判定基准
-    bgr_white = [195, 195, 195]  # 白色判定基准
+    bgr_yellow = [58, 158, 195]  # 黄色判定基准
+    bgr_white = [205, 205, 205]  # 白色判定基准
 
-    def detect_img_submodule(submodule_img, color_to_check, thresh_red=40):
+    def detect_img_submodule(submodule_img, color_to_check, thresh_red=40, thresh_bg=40):
 
         bright = submodule_img
         detect_img_bgr = color_to_check
-        detect_img_thresh = 40  # 上下范围扩展40
-        min_bgr = np.array([detect_img_bgr[0] - detect_img_thresh, detect_img_bgr[1] - detect_img_thresh,
+        # thresh_bg = 40  # 上下范围扩展40
+        min_bgr = np.array([detect_img_bgr[0] - thresh_bg, detect_img_bgr[1] - thresh_bg,
                             detect_img_bgr[2] - thresh_red])
-        max_bgr = np.array([detect_img_bgr[0] + detect_img_thresh, detect_img_bgr[1] + detect_img_thresh,
+
+        max_bgr = np.array([detect_img_bgr[0] + thresh_bg, detect_img_bgr[1] + thresh_bg,
                             detect_img_bgr[2] + thresh_red])
 
         mask_bgr = cv2.inRange(bright, min_bgr, max_bgr)
@@ -776,20 +844,50 @@ def detect_row_img_color(image):
         cv2.waitKey(0)
         final_binary_img = gen_thresh_img(filter_for_red_img, threshold=65, mode='dynamic')
 
-    elif check_color(detect_img_submodule(img, bgr_light_blue)):
+    # 判定淡蓝
+    elif check_color(detect_img_submodule(img, bgr_light_blue, thresh_red=60, thresh_bg=60)):
         print('This row image is light blue')
         # 依照淡蓝字体对应亮度进行二值化处理
         final_binary_img = gen_thresh_img(img, threshold=100, mode='dynamic')
 
-    elif check_color(detect_img_submodule(img, bgr_yellow)):
-        print('This row image is light yellow')
-        # 依照黄色字体对应亮度进行二值化处理
-        final_binary_img = gen_thresh_img(img, threshold=125, mode='dynamic')
+    # 判定黄色与白色共存
+    elif check_color(detect_img_submodule(img, bgr_yellow, thresh_red=60, thresh_bg=60)) and check_color(
+            detect_img_submodule(img, bgr_white, thresh_red=50, thresh_bg=50), decision_threshold=0.0065):
 
-    elif check_color(detect_img_submodule(img, bgr_white), decision_threshold=0.0065):
+        # 依照黄色字体对应亮度进行二值化处理
+        final_binary_img = gen_thresh_img(img, threshold=130, mode='dynamic')
+
+    # 判定黄色，当只有黄色时
+    elif check_color(detect_img_submodule(img, bgr_yellow, thresh_red=60, thresh_bg=60)):
+
+        cv2.imshow("the raw yellow img input", img)
+        cv2.waitKey(0)
+
+        yellow_img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        # bright_hsv = cv2.cvtColor(bright, cv2.COLOR_BGR2HSV)
+        # convert 1D array to 3D, then convert it to LAB and take the first element
+        # python
+        bgr_yellow = [58, 158, 195]  # 黄色判定基准
+        bgr = bgr_yellow
+        thresh = 60
+
+        # convert 1D array to 3D, then convert it to HSV and take the first element
+        # this will be same as shown in the above figure [65, 229, 158]
+        hsv = cv2.cvtColor(np.uint8([[bgr]]), cv2.COLOR_BGR2HSV)[0][0]
+
+        min_hsv = np.array([hsv[0] - thresh, hsv[1] - thresh, hsv[2] - thresh])
+        max_hsv = np.array([hsv[0] + thresh, hsv[1] + thresh, hsv[2] + thresh])
+
+        mask_hsv = cv2.inRange(yellow_img_hsv, min_hsv, max_hsv)
+        result_hsv = cv2.bitwise_and(yellow_img_hsv, yellow_img_hsv, mask=mask_hsv)
+
+        # 依照黄色字体对应亮度进行二值化处理
+        final_binary_img = gen_thresh_img(result_hsv, threshold=125, mode='dynamic')
+
+    elif check_color(detect_img_submodule(img, bgr_white, thresh_red=50, thresh_bg=50), decision_threshold=0.0065):
         print('This row image is light white')
         # 依照白色字体对应亮度进行二值化处理
-        final_binary_img = gen_thresh_img(img, threshold=135, mode='dynamic')
+        final_binary_img = gen_thresh_img(img, threshold=140, mode='dynamic')
 
     else:
         print('The color of this row image out of index')
@@ -801,6 +899,6 @@ def detect_row_img_color(image):
 
 if __name__ == '__main__':
 
-    input_image = "../Image/31.png"
+    input_image = "../Img_processed/114/img_two_two.jpg"
     raw_img = cv2.imread(input_image)
     char_split(raw_img)

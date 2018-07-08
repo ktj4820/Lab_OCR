@@ -883,7 +883,7 @@ def detect_row_img_color(image):
 
 
 if __name__ == '__main__':
-    for name_index in range(97, 115, 1):
+    for name_index in range(103, 115, 1):
         input_image = "../Image/" + str(name_index) + ".png"
         # input_image = "../Image/panel_text_1.jpg"
         compressed_img, compressed_opencv_img = img_compression(input_image)
@@ -898,19 +898,29 @@ if __name__ == '__main__':
         print('target_folder: {}'.format(target_folder))
         if not os.path.exists(target_folder):
             os.mkdir(target_folder)
-            cv2.imwrite(target_folder + '/img_compressed.jpg', compressed_opencv_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_two_one_row_one.jpg', img_two_one_row_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_top_left_panel.jpg', img_top_left_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_top_right_panel.jpg', img_top_right_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_lower_left_panel.jpg', img_lower_left_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_lower_right_panel.jpg', img_lower_right_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_compressed.jpg', compressed_opencv_img,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_two_one_row_one.jpg', img_two_one_row_one,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_top_left_panel.jpg', img_top_left_panel,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_top_right_panel.jpg', img_top_right_panel,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_lower_left_panel.jpg', img_lower_left_panel,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_lower_right_panel.jpg', img_lower_right_panel,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
             cv2.imwrite(target_folder + '/img_two_two.jpg', img_two_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
             cv2.imwrite(target_folder + '/img_three_one.jpg', img_three_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
             cv2.imwrite(target_folder + '/img_three_two.jpg', img_three_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
             cv2.imwrite(target_folder + '/img_three_three.jpg', img_three_three, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_three_four_one.jpg', img_three_four_one, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            cv2.imwrite(target_folder + '/img_three_four_two.jpg', img_three_four_two, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_four_one.jpg', img_three_four_one,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(target_folder + '/img_three_four_two.jpg', img_three_four_two,
+                        [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+
         else:
+
             print(target_folder + " already exists")
             pass
 
