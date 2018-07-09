@@ -47,7 +47,7 @@ def gen_thresh_img(cut_image, threshold, mode='binary'):
         return gen_img
 
 
-def char_split(raw_img_input):
+def img_textbox_split(raw_img_input):
     """
     分割图像，完成字符级切割
     :param raw_img_input:
@@ -851,4 +851,4 @@ if __name__ == '__main__':
 
     input_image = "../Image/22.png"
     raw_img = cv2.imread(input_image)
-    char_split(raw_img)
+    img_textbox_split(raw_img)
