@@ -156,6 +156,7 @@ def char_split(raw_img_input):
                     '''arg = True，黑底白字情况下：对于第m行，如果该行黑色像素大于
                     0.95*（所有行中黑色像素数目和的最大值），则证明该列包含的白色字符太少，判定次列即为字符切割结束列；
                     对于白底黑字情况，则反之'''
+                    split_end_column = start_column
                     for m in range(start_column, char_width + 1):
                         # 0.95这个参数请多调整，对应下面的0.05
                         if (column_black_num[m] if char_arg else column_white_num[m]) > \
